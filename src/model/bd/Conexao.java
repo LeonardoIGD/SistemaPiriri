@@ -12,7 +12,7 @@ public class Conexao {
 
     private Conexao() {
         try {
-            this.conexcao = DriverManager.getConnection("jdbc:postgresql://isabelle.db.elephantsql.com:5432/xoubvfub", "xoubvfub", "gNNh_H0XasWFuftt0nsw9SKck6Q3AC7P");
+            this.conexcao = DriverManager.getConnection("jdbc:postgresql://isabelle.db.elephantsql.com:5432/xoubvfub", System.getenv("DB_USERNAME"), System.getenv("DB_PASSWORD"));
         } catch (SQLException e) {
             System.err.println("Error connecting to database: " + e.getMessage());
         }
