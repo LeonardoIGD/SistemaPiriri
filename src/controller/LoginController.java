@@ -1,5 +1,6 @@
 package controller;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -31,6 +32,7 @@ public class LoginController implements Initializable {
     @FXML
     private TextField passwordTextField;
     public static Funcionario func;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File backGroungFile = new File("figs/background.jpg");
@@ -57,8 +59,13 @@ public class LoginController implements Initializable {
     }
 
     public boolean validarLogin(){
-        func = verificarLoginDAO(userTextField.getText(), passwordTextField.getText());
-        return func != null;
+        func = verificarLoginDAO(userTextField.getText());
+
+        if(func != null){
+            return BCrypt.verifyer().verify(passwordTextField.getText().toCharArray(), func.getSenha()).verified;
+        }
+
+        return false;
     }
 
 }

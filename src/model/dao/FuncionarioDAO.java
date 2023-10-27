@@ -11,20 +11,20 @@ import java.sql.SQLException;
 
 public class FuncionarioDAO {
 
-    public static @Nullable Funcionario verificarLoginDAO(String username, String password){
+    public static @Nullable Funcionario verificarLoginDAO(String username){
         Conexao conexao = Conexao.getInstance();
         Connection con = conexao.getConexao();
 
         try {
-            PreparedStatement sql = con.prepareStatement("SELECT * FROM funcionario WHERE tbfuncionario_login = ? AND tbfuncionario_senha = ?;");
+            PreparedStatement sql = con.prepareStatement("SELECT * FROM funcionario WHERE tbfuncionario_login = ?;");
             sql.setString(1, username);
-            sql.setString(2, password);
 
             ResultSet rs = null;
 
             int id = 0;
 
             String nome = "";
+            String password = "";
             String cargo = "";
 
             rs = sql.executeQuery();

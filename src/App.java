@@ -1,5 +1,6 @@
 import java.io.IOException;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import controller.PagesController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -13,6 +14,7 @@ public class App extends Application {
         stage = primaryStage;
         PagesController.openLoginPage();
     }
+
     public static void main(String[] args) {
         launch();
     }
