@@ -3,6 +3,7 @@ package model.dao;
 import model.bd.Conexao;
 import model.entidades.Produto;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,7 +41,7 @@ public class ProdutoDAO {
         }
     }
 
-    public static Produto buscarProdutoDAO(String codigo){
+    public static @Nullable Produto buscarProdutoDAO(String codigo){
         Conexao conexao = Conexao.getInstance();
         Connection con = conexao.getConexao();
 
