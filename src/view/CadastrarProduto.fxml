@@ -117,7 +117,7 @@
       </GridPane>
       <Label fx:id="tituloLabel" alignment="CENTER" layoutX="229.0" prefHeight="132.0" prefWidth="251.0" text="FICHA DO PRODUTO" AnchorPane.bottomAnchor="468.0" AnchorPane.leftAnchor="224.5" AnchorPane.rightAnchor="224.5" AnchorPane.topAnchor="0.0">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="Bookman Old Style Bold" size="22.0" />
          </font>
       </Label>
       <HBox layoutX="241.0" layoutY="519.0" spacing="25.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="217.5" AnchorPane.rightAnchor="217.5" AnchorPane.topAnchor="520.0">
