@@ -18,7 +18,7 @@ public class ProdutoDAO {
         Connection con = conexao.getConexao();
 
         try {
-            PreparedStatement sql = con.prepareStatement("INSERT INTO produto (tbProduto_codigo, tbProduto_descricao, tbProduto_peso, tbProduto_valorcompra, tbProduto_valorvenda, tbProduto_quantidade, tbProduto_vencimento, tbProduto_detalhes) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+            PreparedStatement sql = con.prepareStatement("INSERT INTO produto (tbProduto_codigo, tbProduto_descricao, tbProduto_peso, tbProduto_valorcompra, tbProduto_valorvenda, tbProduto_quantidade, tbProduto_detalhes) VALUES (?, ?, ?, ?, ?, ?, ?);");
 
             sql.setString(1, produto.getCodigo());
             sql.setString(2, produto.getDescricao());
@@ -26,8 +26,7 @@ public class ProdutoDAO {
             sql.setDouble(4, produto.getValorDeCompra());
             sql.setDouble(5, produto.getValorDeVenda());
             sql.setDouble(6, produto.getQuantidade());
-            sql.setString(7, produto.getVencimento());
-            sql.setString(8, produto.getDetalhes());
+            sql.setString(7, produto.getDetalhes());
 
             sql.executeUpdate();
             sql.close();
@@ -57,7 +56,6 @@ public class ProdutoDAO {
             double valorCompra = 0.0;
             double valorVenda = 0.0;
             double quantidade = 0.0;
-            String vencimento = "";
             String detalhes = "";
 
             rs = sql.executeQuery();
@@ -69,12 +67,11 @@ public class ProdutoDAO {
                 valorCompra = rs.getDouble("tbProduto_valorcompra");
                 valorVenda = rs.getDouble("tbProduto_valorvenda");
                 quantidade = rs.getDouble("tbProduto_quantidade");
-                vencimento = rs.getString("tbProduto_vencimento");
                 detalhes = rs.getString("tbProduto_detalhes");
             }
 
             if(!descricao.isEmpty()){
-                return new Produto(codigo, descricao, quantidade, valorCompra, valorVenda, peso, vencimento, detalhes);
+                return new Produto(codigo, descricao, quantidade, valorCompra, valorVenda, peso, detalhes);
             }
 
             rs.close();
@@ -110,7 +107,6 @@ public class ProdutoDAO {
                 produto.setValorDeCompra(rs.getDouble("tbProduto_valorcompra"));
                 produto.setValorDeVenda(rs.getDouble("tbProduto_valorvenda"));
                 produto.setQuantidade(rs.getDouble("tbProduto_quantidade"));
-                produto.setVencimento(rs.getString("tbProduto_vencimento"));
                 produto.setDetalhes(rs.getString("tbProduto_detalhes"));
 
                 produtos.add(produto);
@@ -130,17 +126,16 @@ public class ProdutoDAO {
         Connection con = conexao.getConexao();
 
         try {
-            PreparedStatement sql = con.prepareStatement("UPDATE produto SET tbProduto_codigo = ?, tbProduto_descricao = ?, tbProduto_peso = ?, tbProduto_valorcompra = ?, tbProduto_valorvenda = ?, tbProduto_vencimento = ?, tbProduto_detalhes = ?, tbProduto_quantidade = ? WHERE tbProduto_codigo = ?;");
+            PreparedStatement sql = con.prepareStatement("UPDATE produto SET tbProduto_codigo = ?, tbProduto_descricao = ?, tbProduto_peso = ?, tbProduto_valorcompra = ?, tbProduto_valorvenda = ?, tbProduto_detalhes = ?, tbProduto_quantidade = ? WHERE tbProduto_codigo = ?;");
 
             sql.setString(1, produto.getCodigo());
             sql.setString(2, produto.getDescricao());
             sql.setString(3, produto.getPeso());
             sql.setDouble(4, produto.getValorDeCompra());
             sql.setDouble(5, produto.getValorDeVenda());
-            sql.setString(6, produto.getVencimento());
-            sql.setString(7, produto.getDetalhes());
-            sql.setDouble(8, produto.getQuantidade());
-            sql.setString(9, produto.getCodigo());
+            sql.setString(6, produto.getDetalhes());
+            sql.setDouble(7, produto.getQuantidade());
+            sql.setString(8, produto.getCodigo());
 
             sql.executeUpdate();
             sql.close();

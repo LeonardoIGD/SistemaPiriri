@@ -139,7 +139,6 @@ public class EstoqueController implements Initializable {
         dialogStage.setResizable(false);
 
         CadastroController controller = loader.getController();
-        controller.setAlterar(nome.equals("ALTERAR PRODUTO"));
         controller.setInteracao(dialogStage);
         controller.setProduto(produto);
         controller.setLabelTitulo(nome);

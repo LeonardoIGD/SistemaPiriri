@@ -2,9 +2,11 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.entidades.Produto;
 
@@ -26,15 +28,14 @@ public class CadastroController implements Initializable {
     @FXML
     private TextField qntTextField;
     @FXML
-    private TextField vencTextField;
-    @FXML
     private TextField vendTextField;
     @FXML
     private Label tituloLabel;
+    @FXML
+    private GridPane cadastroGrid;
     private Stage interacao;
     private boolean botaoConfirmarClicado;
     private Produto produto;
-    private boolean alterar;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,7 +47,6 @@ public class CadastroController implements Initializable {
             produto.setCodigo(codTextField.getText());
             produto.setDescricao(descTextField.getText());
             produto.setPeso(pesoTextField.getText());
-            produto.setVencimento(vencTextField.getText());
             produto.setValorDeCompra(Double.parseDouble(compTextField.getText()));
             produto.setValorDeVenda(Double.parseDouble(vendTextField.getText()));
             produto.setDetalhes(forTextField.getText());
@@ -67,13 +67,18 @@ public class CadastroController implements Initializable {
         this.pesoTextField.setText(produto.getPeso());
         this.vendTextField.setText(String.valueOf(produto.getValorDeVenda()));
         this.compTextField.setText(String.valueOf(produto.getValorDeCompra()));
-        this.vencTextField.setText(produto.getVencimento());
         this.forTextField.setText(produto.getDetalhes());
         this.qntTextField.setText(String.valueOf(produto.getQuantidade()));
     }
 
     private boolean validarEntradaDeDados() {
         String errorMessage = "";
+        for (Node node : cadastroGrid.getChildren()) {
+            if (((TextField) node).getText() == null || ((TextField) node).getText().trim().isEmpty()) {
+                node.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+                errorMessage += ((TextField) node).getPromptText() +"\n";
+            }
+        }
 
         if (errorMessage.isEmpty()) {
             return true;
@@ -95,9 +100,5 @@ public class CadastroController implements Initializable {
     public boolean isBotaoClicado() {
         return botaoConfirmarClicado;
     }
-    public void setAlterar(boolean alterar) {
-        this.alterar = alterar;
-    }
-
 
 }
