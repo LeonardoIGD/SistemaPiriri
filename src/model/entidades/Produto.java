@@ -7,7 +7,6 @@ public class Produto {
     private double valorDeCompra;
     private double valorDeVenda;
     private String peso;
-    private String vencimento;
     private String detalhes;
 
     //CONSTRUTOR
@@ -15,14 +14,13 @@ public class Produto {
     }
 
     public Produto(String codigo, String descricao, double quantidade, double valorDeCompra, double valorDeVenda,
-                   String peso, String vencimento, String detalhes) {
+                   String peso, String detalhes) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.valorDeCompra = valorDeCompra;
         this.valorDeVenda = valorDeVenda;
         this.peso = peso;
-        this.vencimento = vencimento;
         this.detalhes = detalhes;
     }
 
@@ -62,12 +60,6 @@ public class Produto {
     }
     public void setPeso(String peso) {
         this.peso = peso;
-    }
-    public String getVencimento() {
-        return vencimento;
-    }
-    public void setVencimento(String vencimento) {
-        this.vencimento = vencimento;
     }
     public String getDetalhes() {
         return detalhes;
